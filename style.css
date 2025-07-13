@@ -488,6 +488,7 @@ p {
 
 /* Footer */
 #footer {
+<<<<<<< HEAD
   background: none !important;
   background-color: transparent !important;
   box-shadow: none;
@@ -498,6 +499,15 @@ p {
   padding-bottom: 8px;
   background: none;
   box-shadow: none;
+=======
+	background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+}
+#footer .footer {
+	min-height: 200px;
+	flex-direction: column;
+	padding-top: 50px;
+	padding-bottom: 10px;
+>>>>>>> 7d6a5dcd79d9751fca3ed0463f1a4f4a77829a14
 }
 #footer h2 {
 	color: white;
@@ -1192,6 +1202,7 @@ body > *:not(.spline-bg) {
   transform: scale(1.08);
   filter: brightness(1.08) saturate(1.1);
 }
+<<<<<<< HEAD
 
 #footer .social-item {
   position: relative;
@@ -1212,3 +1223,5 @@ body > *:not(.spline-bg) {
   box-shadow: 0 0 0 8px rgba(220,20,60,0.22), 0 2px 12px rgba(220,20,60,0.13);
   border-color: crimson;
 }
+=======
+>>>>>>> 7d6a5dcd79d9751fca3ed0463f1a4f4a77829a14
