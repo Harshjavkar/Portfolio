@@ -1,4 +1,5 @@
 @import 'https://fonts.googleapis.com/css?family=Montserrat:300, 400, 700&display=swap';
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap');
 * {
 	padding: 0;
 	margin: 0;
@@ -1214,3 +1215,129 @@ body > *:not(.spline-bg) {
   box-shadow: 0 0 0 8px rgba(220,20,60,0.22), 0 2px 12px rgba(220,20,60,0.13);
   border-color: crimson;
 }
+
+/* --- Projects: widget-style overrides (no background photo, floating cards) --- */
+#projects .all-projects {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+	gap: 24px;
+	align-items: stretch;
+	justify-items: stretch;
+}
+
+#projects .project-item {
+	display: block;
+	width: 100%;
+	margin: 0;
+	border-radius: 18px;
+	height: auto;
+}
+
+#projects .project-info {
+	background: transparent;
+	flex-basis: auto;
+	height: auto;
+}
+
+#projects .project-img,
+#projects .project-img:after {
+	display: none !important;
+	content: none !important;
+}
+
+/* Floating widget effect */
+@keyframes widgetFloat {
+	0% { transform: translateY(0); }
+	50% { transform: translateY(-6px); }
+	100% { transform: translateY(0); }
+}
+#projects .project-item {
+	animation: widgetFloat 6s ease-in-out infinite;
+}
+#projects .project-item:nth-child(odd) { animation-delay: 0.3s; }
+#projects .project-item:nth-child(3n) { animation-duration: 7s; }
+
+@media only screen and (min-width: 768px) {
+	#projects .project-item {
+		display: block;
+		border-radius: 18px;
+		height: auto;
+	}
+}
+
+/* 3D Toy Widget inside project cards */
+#projects .project-item {
+	transform-style: preserve-3d;
+}
+#projects .toy-3d {
+	position: absolute;
+	right: 16px;
+	top: 16px;
+	width: 84px;
+	height: 84px;
+	pointer-events: none;
+	transform-style: preserve-3d;
+	filter: drop-shadow(0 4px 12px rgba(0,0,0,0.35));
+	z-index: 1;
+}
+#projects .toy-3d .ring {
+	position: absolute;
+	inset: 0;
+	border-radius: 50%;
+	background: conic-gradient(from 0deg, rgba(220,20,60,0.0), rgba(220,20,60,0.7), rgba(220,20,60,0.0) 60%);
+	-webkit-mask: radial-gradient(closest-side, transparent 57%, #000 58%);
+	mask: radial-gradient(closest-side, transparent 57%, #000 58%);
+	box-shadow: 0 0 16px rgba(220,20,60,0.25) inset, 0 0 8px rgba(220,20,60,0.25);
+}
+#projects .toy-3d .ring1 { animation: ringSpin 8s linear infinite; }
+#projects .toy-3d .ring2 { animation: ringSpinX 10s linear infinite; }
+#projects .toy-3d .ring3 { animation: ringSpinY 12s linear infinite; }
+
+@keyframes ringSpin { from { transform: rotateZ(0deg); } to { transform: rotateZ(360deg); } }
+@keyframes ringSpinX { from { transform: rotateX(66deg) rotateZ(0deg); } to { transform: rotateX(66deg) rotateZ(360deg); } }
+@keyframes ringSpinY { from { transform: rotateY(66deg) rotateZ(0deg); } to { transform: rotateY(66deg) rotateZ(360deg); } }
+
+/* Ripple effect on click */
+#projects .project-item { position: relative; overflow: hidden; }
+#projects .project-item .ripple {
+	position: absolute;
+	width: 10px; height: 10px;
+	transform: translate(-50%, -50%);
+	border-radius: 50%;
+	background: radial-gradient(circle, rgba(220,20,60,0.35) 0%, rgba(220,20,60,0.15) 40%, rgba(220,20,60,0.0) 70%);
+	pointer-events: none;
+	animation: rippleExpand 0.65s ease-out forwards;
+	z-index: 0;
+}
+@keyframes rippleExpand {
+	0% { opacity: 0.35; width: 10px; height: 10px; }
+	100% { opacity: 0; width: 400px; height: 400px; }
+}
+
+:root {
+	--font-heading: 'Poppins', 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+	--font-body: 'Inter', 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+html { font-family: var(--font-body); }
+
+/* Heading typography */
+h1, h2, h3, h4, h5, h6, .section-title, .brand h1 {
+	font-family: var(--font-heading);
+	letter-spacing: 0.02em;
+}
+
+/* Body/content typography */
+body, p, .project-info p, .contact-form input, .contact-form textarea, .cta, #header .nav-list ul a, .contact-info h2, .skills-grid span {
+	font-family: var(--font-body);
+}
+
+/* Fine-tune sizes and weights */
+.section-title { font-weight: 700; }
+.brand h1 { font-weight: 700; }
+#projects .project-info h1 { font-weight: 700; letter-spacing: 0.01em; }
+#projects .project-info h2 { font-weight: 600; letter-spacing: 0.02em; opacity: 0.9; }
+#projects .project-info p { font-weight: 400; line-height: 1.9; }
+
+/* Improve readability on dark bg */
+#projects .project-info p, p { color: rgba(243,243,243,0.92); }
+#projects .project-info h2 { color: rgba(243,243,243,0.88); }
